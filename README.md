@@ -14,7 +14,7 @@ You can add the library to your `pom.xml` like so:
 
 <dependencies>
     <dependency>
-        <groupId>me.exro</groupId>
+        <groupId>com.github.exrodev</groupId>
         <artifactId>LunarTransfer</artifactId>
         <version>-SNAPSHOT</version>
     </dependency>
