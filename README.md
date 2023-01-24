@@ -2,6 +2,22 @@
 A library that allows you to send Lunar Client's transfer packets to a player. This allows you to make a multi-region server without having to log-in via a subdomain.
 
 ## Usage
+Open a terminal and clone the repository and install it to your local Maven repository:
+```
+git clone https://github.com/exrodev/LunarTransfer.git
+cd LunarTransfer
+mvn clean install
+```
+
+You can then add the plugin to your `pom.xml` like:
+```xml
+<dependency>
+    <groupId>me.exro</groupId>
+    <artifactId>LunarTransfer</artifactId>
+    <version>1.0</version>
+</dependency>
+```
+
 Create your plugin and create a new `LunarTransfer` like so:
 ```java
 import me.exro.lunartransfer.LunarTransfer;
