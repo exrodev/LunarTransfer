@@ -1,4 +1,4 @@
-package me.exro.lunartransfer.events;
+package me.exro.lunartransfer.events.ping;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
@@ -7,6 +7,7 @@ import org.bukkit.event.player.PlayerEvent;
 import java.util.Map;
 
 public class PingResponseEvent extends PlayerEvent {
+
     private static final HandlerList handlers = new HandlerList();
     private Map<String, Long> responses;
 

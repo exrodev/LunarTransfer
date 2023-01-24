@@ -1,9 +1,11 @@
-package me.exro.lunartransfer.events;
+package me.exro.lunartransfer.events.transfer;
 
+import me.exro.lunartransfer.events.TransferEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
 public class PreTransferPlayerEvent extends TransferEvent {
+
     private static final HandlerList handlers = new HandlerList();
 
     public PreTransferPlayerEvent(Player player, String ip) {

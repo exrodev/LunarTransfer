@@ -1,21 +1,24 @@
 # LunarTransfer
-A library that allows you to send Lunar Client's transfer packets to a player. This allows you to make a multi-region server without having to log-in via a subdomain.
+This allows you to send transfer packets to a player who is using Lunar Client,
+in the way the Lunar Network operates. 
 
 ## Usage
-Open a terminal and clone the repository and install it to your local Maven repository:
-```
-git clone https://github.com/exrodev/LunarTransfer.git
-cd LunarTransfer
-mvn clean install
-```
-
-You can then add the plugin to your `pom.xml` like:
+You can add the library to your `pom.xml` like so:
 ```xml
-<dependency>
-    <groupId>me.exro</groupId>
-    <artifactId>LunarTransfer</artifactId>
-    <version>1.0</version>
-</dependency>
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>me.exro</groupId>
+        <artifactId>LunarTransfer</artifactId>
+        <version>1.0</version>
+    </dependency>
+</dependencies>
 ```
 
 Create your plugin and create a new `LunarTransfer` like so:
@@ -24,7 +27,8 @@ import me.exro.lunartransfer.LunarTransfer;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class ExamplePlugin extends JavaPlugin {
-    public LunarTransfer lunarTransfer;
+    
+    private LunarTransfer lunarTransfer;
 
     @Override
     public void onEnable() {
@@ -36,24 +40,18 @@ public class ExamplePlugin extends JavaPlugin {
 
 Whenever you would like to transfer a player to a server, you can do it like so:
 ```java
-// player = Player object
-// ip = String of the ip you would like the client to connect to
+// player = the Bukkit Player object
+// ip = String of the IP you would like the client to connect to
 lunarTransfer.transferPlayer(player, ip);
 ```
 
-There are multiple events that the library will set off when a player will be sent a transfer packet, and when the server receives a response about one. Don't forget to register your listener!
-```java
-import me.exro.lunartransfer.events.PostTransferPlayerEvent;
-import me.exro.lunartransfer.events.PreTransferPlayerEvent;
-import me.exro.lunartransfer.events.TransferDeniedEvent;
-import me.exro.lunartransfer.events.TransferSuccessEvent;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
+There are multiple events that the library will set off when a player will is sent a transfer packet, and when the server receives a response about one. Don't forget to register your listener!
 
+```java
 public class ExampleListener implements Listener {
+
     @EventHandler
     public void onPreTransfer(PreTransferPlayerEvent event) {
-        System.out.println("Transferring " + event.getPlayer().getName() + " to " + event.getIp());
         //...
     }
 
@@ -74,8 +72,27 @@ public class ExampleListener implements Listener {
 }
 ```
 
+---
+
+In addition, Lunar Client supports asking clients to ping multiple IPs and get their result.
+Here's how you can implement that using LunarTransfer:
+```java
+lunarTransfer.getPing(player, "hypixel.net", "mineplex.com");
+```
+
+Then, listen for the `PingResponseEvent` to get your result.
+```java
+public class ExampleListener implements Listener {
+    
+    @EventHandler
+    public void onPingResponse(PingResponseEvent event) {
+        //...
+    }
+}
+```
+
 ## License
-LunarTransfer is licensed under the [MIT](https://choosealicense.com/licenses/mit/) License. Have fun!
+LunarTransfer is licensed under the [MIT License](https://choosealicense.com/licenses/mit/). Have fun!
 
 ## Credits
 This wouldn't have been able to be possible without the [Lunar Mapping Project](https://github.com/Lunar-Mapping-Project/mappings).
