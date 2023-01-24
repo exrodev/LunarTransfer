@@ -56,7 +56,7 @@ for server:
   byte[] ipBytes // ip string
   long ping // player's ping to server
 ```
-Example: The client replies with their pint to `mc.hypixel.net`, `mineplex.com`, and `blockmania.com`
+Example: The client replies with their ping to `mc.hypixel.net`, `mineplex.com`, and `blockmania.com`
 ```java
 // Data: [(byte)2, (int)3, (int)14, "mc.hypixel.net", (long)256, (int)12, "mineplex.com", (long)220, (int)14, blockmania.com, (long)180]
 byte packetType = 2
