@@ -9,9 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public final class LunarTransfer {
     private final JavaPlugin plugin;
@@ -43,6 +41,38 @@ public final class LunarTransfer {
         Bukkit.getPluginManager().callEvent(new PreTransferPlayerEvent(player, ip));
         player.sendPluginMessage(plugin, TRANSFER_CHANNEL, data);
         Bukkit.getPluginManager().callEvent(new PostTransferPlayerEvent(player, ip));
+    }
+
+    public void getPing(final Player player, String... ips) {
+        getPing(player, Arrays.asList(ips));
+    }
+
+    /**
+     * @param player The player
+     * @param ips List of IPs that the player will be sent to check their ping (maximum 10)
+     */
+    public void getPing(final Player player, List<String> ips) {
+        if (ips.size() > 10) {
+            ips = ips.subList(0, 9);
+        }
+
+        int bufferSize = 5;
+        for (String ip : ips) {
+            bufferSize += 4;
+            bufferSize += ip.length();
+        }
+        final ByteBuffer buffer = ByteBuffer.allocate(bufferSize);
+
+        buffer.put(PING_SERVERS); // packet type
+        buffer.putInt(ips.size());
+        for (String ip : ips) {
+            buffer.putInt(ip.length());
+            buffer.put(ip.getBytes(StandardCharsets.UTF_8));
+        }
+        final byte[] data = buffer.array();
+
+        player.sendPluginMessage(plugin, TRANSFER_CHANNEL, data);
+        player.sendMessage(new String(data));
     }
 
     public String getLastTransfer(Player player) {
