@@ -26,7 +26,7 @@ byte packetType = 1
 byte accepted = 0
 ```
 
-## Ping Servers
+## Ping Servers (server->client)
 ```java
 byte packetType = 2
 int servers // total amount of servers
@@ -47,7 +47,7 @@ int length = 14
 byte[] ip = "blockmania.com"
 ```
 
-## Ping Response
+## Ping Response (client->server)
 ```java
 byte packetType = 3
 int servers // total amount of servers
