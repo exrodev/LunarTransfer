@@ -59,7 +59,7 @@ for server:
 Example: The client replies with their ping to `mc.hypixel.net`, `mineplex.com`, and `blockmania.com`
 ```java
 // Data: [(byte)2, (int)3, (int)14, "mc.hypixel.net", (long)256, (int)12, "mineplex.com", (long)220, (int)14, blockmania.com, (long)180]
-byte packetType = 2
+byte packetType = 3
 int servers = 3
 int length = 14
 byte[] ip = "mc.hypixel.net"
