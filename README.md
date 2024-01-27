@@ -1,3 +1,7 @@
+# !! ARCHIVED !!
+This project has been archived due to Lunar Client releasing their new server API [Apollo](https://github.com/LunarClient/Apollo),
+which also allows you to use transfer packets. You can read how to use it [here](https://lunarclient.dev/apollo/developers/modules/transfer).
+
 # LunarTransfer
 This allows you to send transfer packets to a player who is using Lunar Client,
 in the way the Lunar Network operates. 
